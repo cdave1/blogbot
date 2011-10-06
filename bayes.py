@@ -18,9 +18,7 @@ reToken = re.compile(r"[^A-Za-z0-9']*", re.I)
 # HACK HACK HACK
 #
 # Put in the try/catch because I am getting encoding 
-# problems from certain characters, and I simply don't have
-# time to understand the python encoding libraries to get this
-# right...
+# problems from certain characters.
 def TokeniseAll():
 	all = {}
 	for post in corpus:
@@ -74,8 +72,6 @@ def countTokens(words, dict):
 
 
 
-# Commented out - need some of the funtions below.
-#
 # Probability that a word indicates that particular category.
 def probWord(catTokens, allTokens, NumPostsInCat):
 	# print catPosts, len(corpus)
@@ -87,15 +83,6 @@ def probWord(catTokens, allTokens, NumPostsInCat):
 		pcatw = max(0.01, min(0.99, ra/(rc+ra)))
 		
 		if len(w) > 4: probs[w] = pcatw
-
-#	for w in catTokens.keys():
-	#	pwcat = 1/NumPostsInCat
-	#	if catTokens.has_key(w): pwcat = min(1, catTokens[w]/NumPostsInCat)
-
-	#	pcat = NumPostsInCat/len(corpus)
-	#	pw = allTokens[w]/len(allTokens)
-	#	pcatw = max(0.01, (pwcat*pcat)/pw)
-#		if len(w) > 4: probs[w] = catTokens[w]
 	return probs
 
 
